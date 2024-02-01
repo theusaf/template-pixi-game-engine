@@ -13,6 +13,9 @@ dist-ssr
 *.local
 *-lock.*
 
+# Backend stuff
+backend/*.js
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
