@@ -62,15 +62,17 @@ mv build/app-entrypoint-x64.exe build/x64/app.exe
 # remove temporary folder
 rm -rf build/tmp
 
-# zip
-echo "Zipping"
-cd build
-if [ -f "app-arm64.zip" ]; then
-  rm app-arm64.zip
+# zip (if arg = zip)
+if [ "$1" = "zip" ]; then
+  echo "Zipping"
+  cd build
+  if [ -f "app-arm64.zip" ]; then
+    rm app-arm64.zip
+  fi
+  zip -r app-arm64.zip arm64
+  if [ -f "app-x64.zip" ]; then
+    rm app-x64.zip
+  fi
+  zip -r app-x64.zip x64
+  cd ..
 fi
-zip -r app-arm64.zip arm64
-if [ -f "app-x64.zip" ]; then
-  rm app-x64.zip
-fi
-zip -r app-x64.zip x64
-cd ..
