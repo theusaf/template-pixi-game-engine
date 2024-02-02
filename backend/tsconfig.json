@@ -9,7 +9,9 @@
     "moduleResolution": "NodeNext",
 
     /* Linting */
-    "strict": true
+    "strict": true,
+
+    "outDir": "../build-backend"
   },
-  "include": ["*"]
+  "include": ["*"],
 }

@@ -14,7 +14,10 @@ dist-ssr
 *-lock.*
 
 # Backend stuff
-backend/*.js
+bundle
+build
+build-backend
+*.exe
 
 # Editor directories and files
 .vscode/*
