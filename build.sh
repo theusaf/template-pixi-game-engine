@@ -26,7 +26,7 @@ mkdir -p build/tmp
 
 # copy source files
 cp -r dist/ build/tmp/
-cp -r build-backend/* build/tmp/backend
+cp -r build-backend/ build/tmp/backend
 cp package.json build/tmp
 
 # install dependencies

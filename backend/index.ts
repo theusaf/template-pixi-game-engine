@@ -9,7 +9,17 @@ const app = express();
 app.use(express.static(path.join(dirname, "../dist")));
 
 const port = await getListeningPort();
-const window = await Gluon.open(`http://localhost:${port}`, {});
+const window = await Gluon.open(`http://localhost:${port}`, {
+  allowHTTP: true,
+});
+
+const closeInterval = setInterval(() => {
+  if (window.closed) {
+    clearInterval(closeInterval);
+    console.log("Window closed, exiting");
+    process.exit(0);
+  }
+}, 2000);
 
 async function getListeningPort() {
   let port = 3050;
