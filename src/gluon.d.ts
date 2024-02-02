@@ -1,7 +1,6 @@
 import * as Gluon from "@gluon-framework/gluon";
 
 declare global {
-
   interface GluonVersions {
     browser: string;
     browserType: string;
@@ -37,5 +36,4 @@ declare global {
     ipc: GluonIPC;
     versions: GluonVersions;
   };
-
 }

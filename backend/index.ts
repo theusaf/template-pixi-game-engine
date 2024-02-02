@@ -36,14 +36,16 @@ async function getListeningPort() {
 
 function bindToPort(port: number) {
   return new Promise<void>((resolve, reject) => {
-    app.listen(port, () => {
-      console.log(`Listening on port ${port}`);
-      resolve();
-    }).on("error", (err: {errno?: string}) => {
-      if ("EADDRINUSE" === err?.errno) {
-        console.log(`Error: ${err}`);
-        reject(err);
-      }
-    });
+    app
+      .listen(port, () => {
+        console.log(`Listening on port ${port}`);
+        resolve();
+      })
+      .on("error", (err: { errno?: string }) => {
+        if ("EADDRINUSE" === err?.errno) {
+          console.log(`Error: ${err}`);
+          reject(err);
+        }
+      });
   });
 }
