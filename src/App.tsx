@@ -1,34 +1,41 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
+import * as PIXI from "pixi.js";
+import { createContext, useRef, useEffect, useState, forwardRef } from "react";
+import Game from "./Game";
+
+const PixiAppContext = createContext<PIXI.Application | null>(null);
+
+const PixiRenderer = forwardRef<HTMLCanvasElement>((props, ref) => {
+  return <canvas ref={ref} {...props} />;
+});
 
 function App() {
-  const [count, setCount] = useState(0);
+  const pixiAppRef = useRef<HTMLCanvasElement>(null),
+    [pixiApp, setPixiApp] = useState<PIXI.Application | null>(null);
+
+  useEffect(() => {
+    if (pixiAppRef.current) {
+      const app = new PIXI.Application({
+        backgroundAlpha: 0,
+        antialias: true,
+        resolution: 1,
+        autoDensity: true,
+        width: 1280,
+        height: 720,
+        view: pixiAppRef.current,
+      });
+      app.resizeTo = pixiAppRef.current;
+      setPixiApp(app);
+    }
+  }, [pixiAppRef]);
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <PixiAppContext.Provider value={pixiApp}>
+      <div id="pixi-engine" className="w-full relative flex content-center flex-col">
+        <PixiRenderer ref={pixiAppRef} />
+        <Game />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    </PixiAppContext.Provider>
   );
 }
 
