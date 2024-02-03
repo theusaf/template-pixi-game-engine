@@ -8,7 +8,9 @@ const app = express();
 
 app.use(express.static(path.join(dirname, "../dist")));
 
-const port = await getListeningPort();
+const port = process.argv[2]
+  ? parseInt(process.argv[2])
+  : await getListeningPort();
 const window = await Gluon.open(`http://localhost:${port}`, {
   allowHTTP: true,
 });

@@ -1,4 +1,3 @@
-import "./App.css";
 import * as PIXI from "pixi.js";
 import { createContext, useRef, useEffect, useState, forwardRef } from "react";
 import Game from "./Game";
@@ -31,7 +30,10 @@ function App() {
 
   return (
     <PixiAppContext.Provider value={pixiApp}>
-      <div id="pixi-engine" className="w-full relative flex content-center flex-col">
+      <div
+        id="pixi-engine"
+        className="w-full relative flex content-center flex-col"
+      >
         <PixiRenderer ref={pixiAppRef} />
         <Game />
       </div>
