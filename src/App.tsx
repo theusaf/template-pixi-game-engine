@@ -5,7 +5,7 @@ import Game from "./Game";
 const PixiAppContext = createContext<PIXI.Application | null>(null);
 
 const PixiRenderer = forwardRef<HTMLCanvasElement>((props, ref) => {
-  return <canvas ref={ref} {...props} />;
+  return <canvas ref={ref} {...props} className="bg-white" />;
 });
 
 function App() {
@@ -19,11 +19,12 @@ function App() {
         antialias: true,
         resolution: 1,
         autoDensity: true,
-        width: 1280,
-        height: 720,
+        width: 1920,
+        height: 1080,
         view: pixiAppRef.current,
       });
-      app.resizeTo = pixiAppRef.current;
+      (window as unknown as any).debugPixi = app;
+
       setPixiApp(app);
     }
   }, [pixiAppRef]);
@@ -32,7 +33,7 @@ function App() {
     <PixiAppContext.Provider value={pixiApp}>
       <div
         id="pixi-engine"
-        className="w-full relative flex content-center flex-col"
+        className="w-full h-full relative flex justify-center flex-col"
       >
         <PixiRenderer ref={pixiAppRef} />
         <Game />
