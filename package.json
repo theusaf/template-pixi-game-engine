@@ -10,8 +10,8 @@
     "preview": "vite preview",
     "start": "node backend/index.js",
     "build-vite": "tsc && vite build",
-    "build-server": "cd backend && tsc && cd ..",
-    "build-exe": "cd runner && pkg . && cd .. && ./build.sh"
+    "build-server": "esbuild ./backend/index.ts --bundle --platform=node --minify --format=esm --outfile=./build-backend/app.js",
+    "build-exe": "./build.sh"
   },
   "dependencies": {
     "@gluon-framework/gluon": "^0.14.0",
@@ -25,11 +25,11 @@
     "@typescript-eslint/parser": "^6.14.0",
     "@vitejs/plugin-react": "^4.2.1",
     "autoprefixer": "^10.4.17",
+    "esbuild": "^0.20.0",
     "eslint": "^8.55.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
     "pixi.js": "^7.4.0",
-    "pkg": "^5.8.1",
     "postcss": "^8.4.33",
     "prettier": "^3.2.4",
     "react": "^18.2.0",
