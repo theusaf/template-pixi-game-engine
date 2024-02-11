@@ -24,7 +24,7 @@ ARCH_ARM64=false
 ARCH_X64=false
 COMPRESS_OUTPUT=false
 
-while getopts ":htaz:" option; do
+while getopts ":hzt:a:" option; do
    case $option in
       h) # display Help
         help
