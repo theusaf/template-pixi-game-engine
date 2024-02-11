@@ -256,6 +256,7 @@ echo "Cleaning up temporary files"
 rm -rf build/tmp
 
 # zip
+# help from https://askubuntu.com/questions/521011/zip-an-archive-without-including-parent-directory
 if [[ COMPRESS_OUTPUT ]]; then
   echo "Zipping"
   cd build
@@ -264,19 +265,19 @@ if [[ COMPRESS_OUTPUT ]]; then
       if [ -f "arm64-win.zip" ]; then
         rm arm64-win.zip
       fi
-      zip -r arm64-win.zip arm64-win
+      (cd arm64-win && zip -r ../arm64-win.zip)
     fi
     if [[ TARGET_MAC ]]; then
       if [ -f "arm64-mac.zip" ]; then
         rm arm64-mac.zip
       fi
-      zip -r arm64-mac.zip arm64-mac
+      (cd arm64-mac && zip -r ../arm64-mac.zip)
     fi
     if [[ TARGET_LINUX ]]; then
       if [ -f "arm64-linux.zip" ]; then
         rm arm64-linux.zip
       fi
-      zip -r arm64-linux.zip arm64-linux
+      (cd arm64-linux && zip -r ../arm64-linux.zip)
     fi
   fi
   if [[ ARCH_X64 ]]; then
@@ -284,19 +285,19 @@ if [[ COMPRESS_OUTPUT ]]; then
       if [ -f "x64-win.zip" ]; then
         rm x64-win.zip
       fi
-      zip -r x64-win.zip x64-win
+      (cd x64-win && zip -r ../x64-win.zip)
     fi
     if [[ TARGET_MAC ]]; then
       if [ -f "x64-mac.zip" ]; then
         rm x64-mac.zip
       fi
-      zip -r x64-mac.zip x64-mac
+      (cd x64-mac && zip -r ../x64-mac.zip)
     fi
     if [[ TARGET_LINUX ]]; then
       if [ -f "x64-linux.zip" ]; then
         rm x64-linux.zip
       fi
-      zip -r x64-linux.zip x64-linux
+      (cd x64-linux && zip -r ../x64-linux.zip)
     fi
   fi
   cd ..
