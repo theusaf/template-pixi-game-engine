@@ -211,23 +211,29 @@ echo "Copying node files"
 if [[ "$ARCH_ARM64" = true ]]; then
   if [[ "$TARGET_WIN" = true ]]; then
     mv build/node-win-arm64/*/* build/arm64-win/bin
+    rm -rf build/node-win-arm64
   fi
   if [[ "$TARGET_MAC" = true ]]; then
     mv build/node-mac-arm64/*/* build/arm64-mac/bin
+    rm -rf build/node-mac-arm64
   fi
   if [[ "$TARGET_LINUX" = true ]]; then
     mv build/node-linux-arm64/*/* build/arm64-linux/bin
+    rm -rf build/node-linux-arm64
   fi
 fi
 if [[ "$ARCH_X64" = true ]]; then
   if [[ "$TARGET_WIN" = true ]]; then
     mv build/node-win-x64/*/* build/x64-win/bin
+    rm -rf build/node-win-x64
   fi
   if [[ "$TARGET_MAC" = true ]]; then
     mv build/node-mac-x64/*/* build/x64-mac/bin
+    rm -rf build/node-mac-x64
   fi
   if [[ "$TARGET_LINUX" = true ]]; then
     mv build/node-linux-x64/*/* build/x64-linux/bin
+    rm -rf build/node-linux-x64
   fi
 fi
 

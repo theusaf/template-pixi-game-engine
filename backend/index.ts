@@ -1,12 +1,17 @@
 import * as Gluon from "@gluon-framework/gluon";
 import express from "express";
 import path from "node:path";
+import fs from "node:fs";
 import { fileURLToPath } from "node:url";
 
 const dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
 
-app.use(express.static(path.join(dirname, "../dist")));
+if (fs.existsSync(path.join(dirname, "../dist/"))) {
+  app.use(express.static(path.join(dirname, "../dist")));
+} else if (fs.existsSync(path.join(dirname, "dist"))) {
+  app.use(express.static(path.join(dirname, "dist")));
+}
 
 const port = process.argv[2]
   ? parseInt(process.argv[2])

@@ -10,7 +10,7 @@
     "preview": "vite preview",
     "start": "node backend/index.js",
     "build-vite": "tsc && vite build",
-    "build-server": "esbuild ./backend/index.ts --bundle --platform=node --minify --format=esm --outfile=./build-backend/app.js",
+    "build-server": "node esbuild.js",
     "build-exe": "./build.sh"
   },
   "dependencies": {
