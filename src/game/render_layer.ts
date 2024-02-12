@@ -1,26 +1,23 @@
 import { Application, Container, Graphics, Sprite, Texture } from "pixi.js";
 
 interface RenderLayerOptions {
-  renderContainer: Container;
   worldWidth: number;
   worldHeight: number;
   pixiApp: Application;
 }
 
-class RenderLayer {
+class RenderLayer extends Container {
 
-  container: Container;
   pixiApp: Application;
   worldWidth: number;
   worldHeight: number;
 
   constructor({
-    renderContainer,
     pixiApp,
     worldWidth,
     worldHeight
   }: RenderLayerOptions) {
-    this.container = renderContainer;
+    super();
     this.worldWidth = worldWidth;
     this.worldHeight = worldHeight;
     this.pixiApp = pixiApp;
